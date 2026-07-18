@@ -231,3 +231,13 @@ data/
 !data/processed/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+
+# ===============================
+# ML Model Artifacts
+# ===============================
+
+# Ignore all serialized models and processed data
+models/*.pkl
+
+# Keep the models folder
+!models/.gitkeep
