@@ -1,0 +1,8 @@
+Metric,Value
+Accuracy,0.9983
+Precision,1.0
+Recall,0.8125
+F1 Score,0.8966
+ROC AUC,0.9998
+PR AUC,0.983
+Recommended Threshold,0.3
