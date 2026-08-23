@@ -8,7 +8,7 @@ class DatasetStore:
         self.results = None
 
     def set_dataframe(self, dataframe: pd.DataFrame):
-        self.dataframe = dataframe.copy()
+        self.dataframe = dataframe
 
     def set_results(self, results: pd.DataFrame):
         self.results = results.copy()
