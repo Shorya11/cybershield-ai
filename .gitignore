@@ -241,3 +241,73 @@ models/*.pkl
 
 # Keep the models folder
 !models/.gitkeep
+
+# Allow ARGUS production inference artifacts
+!models/xgboost_tuned.pkl
+!models/preprocessor.pkl
+!models/feature_names.pkl
+!models/feature_metadata.pkl
+
+# ===============================
+# VS Code
+# ===============================
+.vscode/
+
+# ===============================
+# macOS
+# ===============================
+.DS_Store
+
+# ===============================
+# Generated Investigation Graphs
+# ===============================
+generated_graphs/*
+!generated_graphs/.gitkeep
+
+# ===============================
+# React Frontend
+# ===============================
+frontend/node_modules/
+frontend/dist/
+
+# ===============================
+# Logs
+# ===============================
+*.log
+
+# ===============================
+# Local test outputs
+# ===============================
+test_response.json
+test_v2_response.json
+network_test.json
+
+# ===============================
+# ML experiment outputs
+# ===============================
+reports/ml_v2/
+
+# ===============================
+# Local model development artifacts
+# ===============================
+models/candidate_v2/
+models/production_backup_v1/
+
+# ===============================
+# ML development / experiment scripts
+# ===============================
+07_leak_safe_oof_baseline.py
+08_leak_safe_scale_weight_baseline.py
+09_repeated_cv_comparison.py
+10_regularization_stability.py
+11_train_final_v2.py
+12_test_v2_inference.py
+13_compare_v1_v2.py
+14_test_v2_shap.py
+15_generate_pr_curve.py
+16_generate_shap_figure.py
+test_shap.py
+test_thresholds.py
+
+# Development notebooks
+notebooks/

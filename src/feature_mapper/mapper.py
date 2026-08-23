@@ -92,13 +92,23 @@ class FeatureMapper:
         return self.business_lookup.get(feature, feature)
 
     def get_feature_info(self, feature):
-
-        return {
+        info = {
             "feature": feature,
-            "variable_name": self.get_variable_name(feature),
-            "business_name": self.get_business_name(feature),
-            "description": self.get_description(feature)
+            "variable_name": self.variable_lookup.get(feature),
+            "business_name": self.business_lookup.get(feature),
+            "description": self.description_lookup.get(feature),
         }
+
+        for key, value in info.items():
+            if value is None:
+                continue
+
+            if pd.isna(value):
+                info[key] = None
+            elif not isinstance(value, str):
+                info[key] = str(value)
+
+        return info
 
     def rename_dataframe(self, dataframe):
 

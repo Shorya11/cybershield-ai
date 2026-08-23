@@ -17,8 +17,11 @@ class PredictionService:
         self.model = joblib.load(models_dir / "xgboost_tuned.pkl")
         self.preprocessor = joblib.load(models_dir / "preprocessor.pkl")
 
+        self.fraud_threshold = 0.39
+
         print("✅ XGBoost model loaded")
         print("✅ Preprocessor loaded")
+        print(f"✅ Fraud decision threshold: {self.fraud_threshold}")
 
     def predict(self, features: dict):
 
@@ -32,7 +35,7 @@ class PredictionService:
 
         prediction = (
             "Fraud"
-            if probability >= 0.5
+            if probability >= self.fraud_threshold
             else "Legitimate"
         )
 
@@ -64,7 +67,9 @@ class PredictionService:
 
         probabilities = self.model.predict_proba(processed)[:, 1]
 
-        predictions = self.model.predict(processed)
+        predictions = (
+            probabilities >= self.fraud_threshold
+        ).astype(int)
 
         results = dataframe.copy()
 
@@ -120,18 +125,7 @@ class PredictionService:
                 ", ".join(risk_report.reasons)
             )
 
-            if risk_report.risk_level in ["High", "Critical"]:
-
-                investigation = investigation_service.investigate_transaction(
-                    transaction_id=transaction_id,
-                    risk_score=risk_report.risk_score
-                )
-
-            else:
-
-                investigation = None
-
-            investigation_reports.append(investigation)
+            investigation_reports.append(None)
 
         results["risk_score"] = risk_scores
 
