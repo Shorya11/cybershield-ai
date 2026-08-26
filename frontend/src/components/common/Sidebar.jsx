@@ -57,7 +57,7 @@ export default function Sidebar() {
           </p>
 
           <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-600">
-            v1.0
+            v2.0
           </span>
         </div>
       </div>
